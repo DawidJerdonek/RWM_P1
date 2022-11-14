@@ -17,7 +17,6 @@ public class BoundaryAlert : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.time);
         if (alertText.activeSelf == true && (Time.time >= textDisableTimer))
         {
             alertText.SetActive(false);
