@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class TutorialTimedEvents : MonoBehaviour
 {
-    public List<string> events = new List<string>();
+    public List<GameObject> events = new List<GameObject>();
     public List<float> timeBetweenEvents = new List<float>();
     private int activeEvent;
-    float timePassed;
+    public float timeToElapse;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +17,30 @@ public class TutorialTimedEvents : MonoBehaviour
         {
             timeBetweenEvents.Add(10.0f);
         }
+
         activeEvent = 0;
-        timePassed = Time.time;
+        timeToElapse = timeBetweenEvents[activeEvent];
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if time passed from start ot previous event is more than timeBetweenEvents
-        if(0.0f >= timeBetweenEvents[activeEvent])
+        if (activeEvent < events.Count)
         {
-            //Enable corresponding tutorialEvent
+            timeToElapse -= Time.deltaTime;
+
+
+            //if time passed from start ot previous event is more than timeBetweenEvents
+            if (timeToElapse <= 0)
+            {
+                Instantiate(events[activeEvent]);
+                if (activeEvent < events.Count)
+                {
+                    activeEvent++;
+                }
+                timeToElapse = timeBetweenEvents[activeEvent];
+            }
         }
     }
 }
