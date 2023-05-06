@@ -101,7 +101,7 @@ public class ArrowController : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<Image>().color = new Color(255, 221, 0, 255);
+            //gameObject.GetComponent<Image>().color = new Color(255, 221, 0, 255);
         }
     }
     
