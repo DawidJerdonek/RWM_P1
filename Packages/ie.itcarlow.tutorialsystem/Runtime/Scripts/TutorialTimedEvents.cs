@@ -10,6 +10,13 @@ public class TutorialTimedEvents : MonoBehaviour
     private int activeEvent;
     public float timeToElapse;
 
+    public List<GameObject> existingEvents = new List<GameObject>();
+    public List<float> timeBetweenExistingEvents = new List<float>();
+    private int activeExistingEvent;
+    public float timeToElapseExisting;
+    //Second List
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +27,15 @@ public class TutorialTimedEvents : MonoBehaviour
 
         activeEvent = 0;
         timeToElapse = timeBetweenEvents[activeEvent];
-        
+
+
+        while (timeBetweenExistingEvents.Count < existingEvents.Count)
+        {
+            timeBetweenExistingEvents.Add(10.0f);
+        }
+
+        activeExistingEvent = 0;
+        timeToElapseExisting = timeBetweenExistingEvents[activeExistingEvent];
     }
 
     // Update is called once per frame
@@ -34,12 +49,34 @@ public class TutorialTimedEvents : MonoBehaviour
             //if time passed from start ot previous event is more than timeBetweenEvents
             if (timeToElapse <= 0)
             {
-                Instantiate(events[activeEvent]);
+                GameObject newEvent = Instantiate(events[activeEvent]);
+                newEvent.transform.parent = FindObjectOfType<Canvas>().gameObject.transform;
+                newEvent.transform.position = new Vector3(0, -10, 0);
+                newEvent.SetActive(true);
                 if (activeEvent < events.Count)
                 {
                     activeEvent++;
                 }
                 timeToElapse = timeBetweenEvents[activeEvent];
+            }
+        }
+
+
+        if (activeExistingEvent < existingEvents.Count)
+        {
+            timeToElapseExisting -= Time.deltaTime;
+
+
+            //if time passed from start ot previous event is more than timeBetweenEvents
+            if (timeToElapseExisting <= 0)
+            {
+                existingEvents[activeExistingEvent].SetActive(true);
+
+                if (activeExistingEvent < existingEvents.Count)
+                {
+                    activeExistingEvent++;
+                }
+                timeToElapseExisting = timeBetweenExistingEvents[activeExistingEvent];
             }
         }
     }
