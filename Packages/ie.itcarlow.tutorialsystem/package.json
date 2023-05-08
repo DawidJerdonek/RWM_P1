@@ -1,6 +1,6 @@
 {
 	"name": "ie.itcarlow.tutorialsystem",
-	"version": "0.3.0",
+	"version": "0.3.1s",
 	"displayName": "Tutorial System",
 	"description": "A template tutorial system allowing users to easily create tutorials for players.",
 	"unity": "2021.3"

@@ -225,12 +225,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "ie.itcarlow.tutorialsystem": {
-      "version": "file:ie.itcarlow.tutorialsystem",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
